@@ -37,14 +37,7 @@ export default class App extends Component {
                         projection: projection,
                         imageExtent: extent,
                     }),
-                }),
-                new ImageLayer({
-                    source: new Static({
-                        url: 'https://localhost:44480/Maps/GetMap/Meta',
-                        projection: projection,
-                        imageExtent: extent,
-                    }),
-                }),
+                })
             ],
             view: new View({
                 projection: projection,
