@@ -27,6 +27,22 @@
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\Background\AspidParallaxBG.png" />
+    <None Include="wwwroot\MapsFolder\Aspid.png" />
+    <None Include="wwwroot\MapsFolder\Bagel.png" />
+    <None Include="wwwroot\MapsFolder\Barratry.png" />
+    <None Include="wwwroot\MapsFolder\Box.png" />
+    <None Include="wwwroot\MapsFolder\Cluster.png" />
+    <None Include="wwwroot\MapsFolder\Fland.png" />
+    <None Include="wwwroot\MapsFolder\Kettle.png" />
+    <None Include="wwwroot\MapsFolder\Marathon.png" />
+    <None Include="wwwroot\MapsFolder\Meta.png" />
+    <None Include="wwwroot\MapsFolder\Moose.png" />
+    <None Include="wwwroot\MapsFolder\Omega.png" />
+    <None Include="wwwroot\MapsFolder\Origin.png" />
+  </ItemGroup>
+
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">

@@ -1,13 +1,10 @@
+using Microsoft.Extensions.FileProviders;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
-
-builder.Services.AddSpaStaticFiles(configuration =>
-{
-    configuration.RootPath = "ClientApp/dist";
-});
 
 var app = builder.Build();
 
@@ -20,7 +17,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseSpaStaticFiles();
+app.UseStaticFiles();
 
 app.UseRouting();
 
@@ -28,8 +25,6 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
 });
-
-
 
 app.MapFallbackToFile("index.html"); ;
 

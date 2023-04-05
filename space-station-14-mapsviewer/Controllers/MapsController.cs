@@ -18,10 +18,17 @@ namespace space_station_14_mapsviewer.Controllers
             _logger = logger;
             currentPath = Directory.GetCurrentDirectory();
         }
+
+        [HttpGet("GetTest")]
+        public IActionResult GetTest()
+        {
+            return Ok("API Work");
+        }
+
         [HttpGet("GetNameMaps")]
         public IActionResult GetNameMaps()
         {
-            List<string> pathMaps = Directory.GetFiles(currentPath + @"\Resource\MapsFolder").ToList();
+            List<string> pathMaps = Directory.GetFiles(currentPath + @"\wwwroot\MapsFolder").ToList();
             List<string> nameMaps = new List<string>();
 
             foreach (string pathMap in pathMaps)
@@ -41,11 +48,11 @@ namespace space_station_14_mapsviewer.Controllers
         [HttpGet("GetJsonMap/{nameMap}")]
         public IActionResult GetJsonMap(string nameMap)
         {
-            if (!System.IO.File.Exists(currentPath + @"\Resource\MapsFolder\" + nameMap + ".png"))
+            if (!System.IO.File.Exists(currentPath + @"\wwwroot\MapsFolder\" + nameMap + ".png"))
             {
                 return NotFound();
             }
-            Bitmap img = new Bitmap(currentPath + @"\Resource\MapsFolder\" + nameMap + ".png");
+            Bitmap img = new Bitmap(currentPath + @"\wwwroot\MapsFolder\" + nameMap + ".png");
 
             
             JsonMap jsonMap = new JsonMap();
@@ -64,26 +71,27 @@ namespace space_station_14_mapsviewer.Controllers
         [HttpGet("GetMap/{nameMap}")]
         public IActionResult GetMap(string nameMap)
         {
-            if (!System.IO.File.Exists(currentPath + @"\Resource\MapsFolder\" + nameMap + ".png"))
+            if (!System.IO.File.Exists(currentPath + @"\wwwroot\MapsFolder\" + nameMap + ".png"))
             {
                 return NotFound();
             }
 
 
-            Byte[] map = System.IO.File.ReadAllBytes(currentPath+ @"\Resource\MapsFolder\" +nameMap+".png");     
+            Byte[] map = System.IO.File.ReadAllBytes(currentPath+ @"\wwwroot\MapsFolder\" + nameMap+".png");     
 
 
             return File(map, "image/png");
         }
+
         [HttpGet("GetBackground")]
         public IActionResult GetBackground()
         {
-            if (!System.IO.File.Exists(currentPath + @"\Resource\Background\AspidParallaxBG"  + ".png"))
+            if (!System.IO.File.Exists(currentPath + @"\wwwroot\Background\AspidParallaxBG" + ".png"))
             {
                 return NotFound();
             }
 
-            Byte[] map = System.IO.File.ReadAllBytes(currentPath + @"\Resource\Background\AspidParallaxBG" + ".png");
+            Byte[] map = System.IO.File.ReadAllBytes(currentPath + @"\wwwroot\Background\AspidParallaxBG" + ".png");
 
             return File(map, "image/png");
         }
