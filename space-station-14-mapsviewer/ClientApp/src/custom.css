@@ -18,3 +18,10 @@ code {
     left: .5rem;
     min-width: 120px
 }
+
+.ol-control {
+    position: absolute;
+    background-color: #fff6;
+    border-radius: 4px;
+    padding: 2px
+}
