@@ -60,7 +60,6 @@ export default class App extends Component {
     }
 
     componentDidUpdate() {
-        console.log(this.extent);
         this.map = new Map({
             target: "map-container",
             layers: [
