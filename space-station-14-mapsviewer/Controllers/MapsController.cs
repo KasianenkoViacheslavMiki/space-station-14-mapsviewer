@@ -75,6 +75,18 @@ namespace space_station_14_mapsviewer.Controllers
 
             return File(map, "image/png");
         }
+        [HttpGet("GetBackground")]
+        public IActionResult GetBackground()
+        {
+            if (!System.IO.File.Exists(currentPath + @"\Resource\Background\AspidParallaxBG"  + ".png"))
+            {
+                return NotFound();
+            }
+
+            Byte[] map = System.IO.File.ReadAllBytes(currentPath + @"\Resource\Background\AspidParallaxBG" + ".png");
+
+            return File(map, "image/png");
+        }
     }
 
     struct JsonMap

@@ -20,7 +20,7 @@ export default class SelectMapControl extends Control {
         });
 
         var state = { listName: [] };
-        fetch('https://localhost:44480/Maps/GetNameMaps')
+        fetch('Maps/GetNameMaps')
             .then(res => res.json())
             .then((result) => {
                 state = {
