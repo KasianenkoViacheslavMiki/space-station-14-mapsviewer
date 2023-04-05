@@ -2,48 +2,83 @@ import React, { Component } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Map, View } from 'ol';
 import 'ol/ol.css';
-import OSM from 'ol/source/OSM.js';
-import TileLayer from 'ol/layer/Tile.js';
+import './custom.css';
 import Projection from 'ol/proj/Projection.js';
 import Static from 'ol/source/ImageStatic.js';
-import { getCenter } from 'ol/extent.js';
+import { getCenter, createEmpty } from 'ol/extent.js';
 import ImageLayer from 'ol/layer/Image.js';
 
-const extent = [0, 0, 5000, 5000];
 
-const projection = new Projection({
-    code: 'xkcd-image',
-    units: 'pixels',
-    extent: extent,
-});
 
 export default class App extends Component {
     constructor(props) {
         super(props);
+
+
+
         this.state = {
             center: [0, 0],
             zoom: 0,
-            png: null
         };
+
+        this.extent = [0, 0, 0, 0];
+
+        
     }
 
     componentDidMount() {
-        new Map({
+        fetch('https://localhost:44480/Maps/GetJsonMap/Aspid')
+            .then(res => res.json())
+            .then((result) => {
+                this.extent = [0, 0, result.extent.y2, result.extent.x2];
+                this.projection = new Projection({
+                    code: 'xkcd-image',
+                    units: 'pixels',
+                    extent: this.extent,
+                });
+                this.map = new Map({
+                    target: "map-container",
+                    layers: [
+                        new ImageLayer({
+                            source: new Static({
+                                url: 'https://localhost:44480/Maps/GetMap/' + 'Aspid',
+                                projection: this.projection,
+                                imageExtent: this.extent,
+                                interpolate: false,
+                            }),
+                        })
+                    ],
+                    view: new View({
+                        projection: this.projection,
+                        center: getCenter(this.extent),
+                        zoom: 2,
+                        maxZoom: 8,
+                        showFullExtent: true,
+                    }),
+                });
+            });
+    }
+
+    componentDidUpdate() {
+        console.log(this.extent);
+        this.map = new Map({
             target: "map-container",
             layers: [
                 new ImageLayer({
                     source: new Static({
-                        url: 'https://localhost:44480/Maps/GetMap/Box',
-                        projection: projection,
-                        imageExtent: extent,
+                        url: 'https://localhost:44480/Maps/GetMap/' + 'Aspid',
+                        projection: this.projection,
+                        imageExtent: this.extent,
+                        interpolate: false,
                     }),
                 })
             ],
             view: new View({
-                projection: projection,
-                center: getCenter(extent),
+                projection: this.projection,
+                center: getCenter(this.extent),
                 zoom: 2,
                 maxZoom: 8,
+                showFullExtent: true,
             }),
         });
     }

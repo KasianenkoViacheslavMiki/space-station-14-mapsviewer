@@ -12,3 +12,9 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+
+#map-selector {
+    top: 65px;
+    left: .5rem;
+    min-width: 120px
+}

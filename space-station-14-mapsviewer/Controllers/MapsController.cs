@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Drawing;
 using System.Net;
 using System.Net.Http.Headers;
 
@@ -37,7 +38,29 @@ namespace space_station_14_mapsviewer.Controllers
             return Ok(nameMaps);
         }
 
+        [HttpGet("GetJsonMap/{nameMap}")]
+        public IActionResult GetJsonMap(string nameMap)
+        {
+            if (!System.IO.File.Exists(currentPath + @"\Resource\MapsFolder\" + nameMap + ".png"))
+            {
+                return NotFound();
+            }
+            Bitmap img = new Bitmap(currentPath + @"\Resource\MapsFolder\" + nameMap + ".png");
 
+            
+            JsonMap jsonMap = new JsonMap();
+
+            jsonMap.Name = nameMap;
+            jsonMap.Extent = new Extent
+            {
+                X1 = 0,
+                Y1= 0,
+                X2 = (float)img.Height,
+                Y2 = (float)img.Width,
+            };
+
+            return Ok(jsonMap);
+        }
         [HttpGet("GetMap/{nameMap}")]
         public IActionResult GetMap(string nameMap)
         {
@@ -52,5 +75,20 @@ namespace space_station_14_mapsviewer.Controllers
 
             return File(map, "image/png");
         }
+    }
+
+    struct JsonMap
+    {
+        public string Name { get; set; }
+
+        public Extent Extent { get; set; }
+    }
+    struct Extent
+    {
+        public float X1 { get; set; }
+        public float Y1 { get; set; }
+
+        public float X2 { get; set; }
+        public float Y2 { get; set; }
     }
 }
