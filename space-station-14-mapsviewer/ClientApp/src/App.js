@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { Route, Routes } from 'react-router-dom';
 import { Map, View } from 'ol';
 import 'ol/ol.css';
 import './custom.css';
 import Projection from 'ol/proj/Projection.js';
 import Static from 'ol/source/ImageStatic.js';
-import { getCenter, createEmpty } from 'ol/extent.js';
+import { getCenter } from 'ol/extent.js';
 import ImageLayer from 'ol/layer/Image.js';
 import SelectMapControl from './SelectMapControl.js';
-import { Control, defaults as defaultControls } from 'ol/control.js';
+import {defaults as defaultControls } from 'ol/control.js';
 
 
 

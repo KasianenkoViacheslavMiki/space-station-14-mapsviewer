@@ -1,4 +1,4 @@
-import { Control, defaults as defaultControls } from 'ol/control.js';
+import { Control} from 'ol/control.js';
 
 export default class SelectMapControl extends Control {
     constructor(options) {
