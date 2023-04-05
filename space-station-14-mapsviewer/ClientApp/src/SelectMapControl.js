@@ -8,7 +8,19 @@ export default class SelectMapControl extends Control {
             fetch('Maps/GetJsonMap/' + comboBox.value)
                 .then(res => res.json())
                 .then((result) => {
-                    options.setState({ extent: [0, 0, result.extent.y2, result.extent.x2], name: result.name })
+                    options.setState(
+                        {
+                            extent: [0, 0, result.extent.x2, result.extent.y2],
+                            url: result.url
+                        })
+                });
+            fetch('Maps/GetParallaxes/' + comboBox.value)
+                .then(res => res.json())
+                .then((result) => {
+                    options.setState(
+                        {
+                            urlParallax: result.url
+                        })
                 });
         });
         comboBox.id = 'map-selector';

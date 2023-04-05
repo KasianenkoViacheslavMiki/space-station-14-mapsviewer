@@ -4,7 +4,7 @@
     {
         public string GetPath()
         {
-            return @"Parallaxes\OtherParallaxBG.png";
+            return @"Parallaxes\OtherParallaxBG.json";
         }
     }
 }

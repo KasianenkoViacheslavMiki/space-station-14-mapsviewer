@@ -17,6 +17,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="6.0.15" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="6.0.15" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
   </ItemGroup>
 
@@ -29,21 +30,6 @@
     <None Remove="$(SpaRoot)**" />
     <None Remove="wwwroot\Background\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\MapsFolder\Aspid.png" />
-    <None Include="wwwroot\MapsFolder\Bagel.png" />
-    <None Include="wwwroot\MapsFolder\Barratry.png" />
-    <None Include="wwwroot\MapsFolder\Box.png" />
-    <None Include="wwwroot\MapsFolder\Cluster.png" />
-    <None Include="wwwroot\MapsFolder\Fland.png" />
-    <None Include="wwwroot\MapsFolder\Kettle.png" />
-    <None Include="wwwroot\MapsFolder\Marathon.png" />
-    <None Include="wwwroot\MapsFolder\Meta.png" />
-    <None Include="wwwroot\MapsFolder\Moose.png" />
-    <None Include="wwwroot\MapsFolder\Omega.png" />
-    <None Include="wwwroot\MapsFolder\Origin.png" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
