@@ -83,7 +83,7 @@ namespace space_station_14_mapsviewer.Controllers
             return File(map, "image/png");
         }
 
-        [HttpGet("GetParallaxe/{nameMap}")]
+        [HttpGet("GetParallaxes/{nameMap}")]
         public IActionResult GetParallaxes(string nameMap)
         {
             IParallaxes parallaxes;
@@ -91,10 +91,6 @@ namespace space_station_14_mapsviewer.Controllers
             if (nameMap == "Aspid")
             {
                 parallaxes = new AspidParallax();
-            }
-            else if (nameMap == "Bagel")
-            {
-                parallaxes = new BagelParallax();
             }
             else if (nameMap == "Kettle")
             {
