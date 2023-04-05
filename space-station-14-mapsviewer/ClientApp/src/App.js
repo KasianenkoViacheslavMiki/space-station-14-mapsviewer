@@ -49,7 +49,7 @@ export default class App extends Component {
         this.map.setLayers([
             new ImageLayer({
                 source: new Static({
-                    url: 'https://localhost:44480/Maps/GetMap/' + this.state.name,
+                    url: 'Maps/GetMap/' + this.state.name,
                     projection: this.projection,
                     imageExtent: this.state.extent,
                     interpolate: false,
