@@ -1,32 +1,15 @@
 import { Control, defaults as defaultControls } from 'ol/control.js';
 
-class SelectMapControl extends Control {
-    changeLayer() {
-
-        //if (activeLayer != null) {
-        //    activeLayer.setVisibility(false); 
-        //}
-        //layer.setVisibility(true);
-        //activeLayer = layer;
-    }
+export default class SelectMapControl extends Control {
     constructor(options) {
         const comboBox = document.createElement('select');
+
         comboBox.addEventListener("change", function () {
-            const img = new Image();
-            img.onload = function () {
-                extent = [0, 0, this.width, this.height];
-                console.log(extent);
-            }
-            img.src = 'https://localhost:44480/Maps/GetMap/' + comboBox.value;
-
-            var s = new Static({
-                url: 'https://localhost:44480/Maps/GetMap/' + comboBox.value,
-                projection: projection,
-                imageExtent: extent,
-            });
-            var l = options.map.getLayers().getArray()[0];
-            l.setSource(s);
-
+            fetch('https://localhost:44480/Maps/GetJsonMap/' + comboBox.value)
+                .then(res => res.json())
+                .then((result) => {
+                    options.setState({ extent: [0, 0, result.extent.y2, result.extent.x2], name: result.name })
+                });
         });
         comboBox.id = 'map-selector';
         comboBox.className = 'ol-unselectable ol-control';
@@ -35,6 +18,7 @@ class SelectMapControl extends Control {
         super({
             element: comboBox
         });
+
         var state = { listName: [] };
         fetch('https://localhost:44480/Maps/GetNameMaps')
             .then(res => res.json())
