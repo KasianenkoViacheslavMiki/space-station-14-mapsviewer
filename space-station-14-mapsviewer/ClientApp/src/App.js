@@ -49,7 +49,7 @@ export default class App extends Component {
         this.projectionl = new Projection({
             code: 'xkcd-image',
             units: 'pixels',
-            extent: [-50000*100 -50000*100,50000*100,50000*100]
+            extent: [-50000, -50000,50000*100,50000*100]
         });
 
         
