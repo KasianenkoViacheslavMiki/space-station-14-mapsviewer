@@ -22,13 +22,16 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="wwwroot\Background\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="wwwroot\Background\**" />
+    <EmbeddedResource Remove="wwwroot\Background\**" />
     <None Remove="$(SpaRoot)**" />
+    <None Remove="wwwroot\Background\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\Background\AspidParallaxBG.png" />
     <None Include="wwwroot\MapsFolder\Aspid.png" />
     <None Include="wwwroot\MapsFolder\Bagel.png" />
     <None Include="wwwroot\MapsFolder\Barratry.png" />

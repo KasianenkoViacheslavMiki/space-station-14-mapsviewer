@@ -8,8 +8,8 @@ import { getCenter } from 'ol/extent.js';
 import ImageLayer from 'ol/layer/Image.js';
 import SelectMapControl from './SelectMapControl.js';
 import {defaults as defaultControls } from 'ol/control.js';
-
-
+import TileLayer from 'ol/layer/Tile.js';
+import XYZ from 'ol/source/XYZ.js';
 
 export default class App extends Component {
     constructor(props) {
@@ -32,7 +32,7 @@ export default class App extends Component {
         fetch('Maps/GetJsonMap/Aspid')
             .then(res => res.json())
             .then((result) => {
-                this.setState({ extent: [0, 0, result.extent.y2, result.extent.x2] })
+                this.setState({ extent: [0, 0, result.extent.y2*10, result.extent.x2*10] })
             });
     }
 
@@ -46,7 +46,20 @@ export default class App extends Component {
             extent: this.state.extent,
         });
 
+        this.projectionl = new Projection({
+            code: 'xkcd-image',
+            units: 'pixels',
+            extent: [-50000*100 -50000*100,50000*100,50000*100]
+        });
+
+        
         this.map.setLayers([
+            new TileLayer({
+                source: new XYZ({
+                    url: 'Maps/GetParallaxes/' + this.state.name,
+                    projection: this.projectionl
+                }),
+            }),
             new ImageLayer({
                 source: new Static({
                     url: 'Maps/GetMap/' + this.state.name,
@@ -54,15 +67,14 @@ export default class App extends Component {
                     imageExtent: this.state.extent,
                     interpolate: false,
                 }),
-            })
+            }),
         ]);
 
         this.map.setView(new View({
             projection: this.projection,
             center: getCenter(this.state.extent),
             zoom: 2,
-            maxZoom: 8,
-            showFullExtent: true,
+            maxZoom: 8
         }));
     }
 
