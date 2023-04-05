@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using space_station_14_mapsviewer.Strategy.ParallaxStrategy;
 using System.Drawing;
 using System.Net;
 using System.Net.Http.Headers;
@@ -76,22 +77,41 @@ namespace space_station_14_mapsviewer.Controllers
                 return NotFound();
             }
 
-
             Byte[] map = System.IO.File.ReadAllBytes(currentPath+ @"\wwwroot\MapsFolder\" + nameMap+".png");     
 
 
             return File(map, "image/png");
         }
 
-        [HttpGet("GetBackground")]
-        public IActionResult GetBackground()
+        [HttpGet("GetParallaxe/{nameMap}")]
+        public IActionResult GetParallaxes(string nameMap)
         {
-            if (!System.IO.File.Exists(currentPath + @"\wwwroot\Background\AspidParallaxBG" + ".png"))
+            IParallaxes parallaxes;
+
+            if (nameMap == "Aspid")
+            {
+                parallaxes = new AspidParallax();
+            }
+            else if (nameMap == "Bagel")
+            {
+                parallaxes = new BagelParallax();
+            }
+            else if (nameMap == "Kettle")
+            {
+                parallaxes = new KettleParallax();
+            }
+            else 
+            {
+                parallaxes = new OtherParralax();
+            }
+
+
+            if (!System.IO.File.Exists(currentPath + @"\wwwroot\"+ parallaxes.GetPath()))
             {
                 return NotFound();
             }
 
-            Byte[] map = System.IO.File.ReadAllBytes(currentPath + @"\wwwroot\Background\AspidParallaxBG" + ".png");
+            Byte[] map = System.IO.File.ReadAllBytes(currentPath + @"\wwwroot\" + parallaxes.GetPath());
 
             return File(map, "image/png");
         }

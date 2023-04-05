@@ -8,7 +8,8 @@ import { getCenter } from 'ol/extent.js';
 import ImageLayer from 'ol/layer/Image.js';
 import SelectMapControl from './SelectMapControl.js';
 import {defaults as defaultControls } from 'ol/control.js';
-
+import TileLayer from 'ol/layer/Tile.js';
+import OGCMapTile from 'ol/source/OGCMapTile.js';
 
 
 export default class App extends Component {
@@ -47,6 +48,11 @@ export default class App extends Component {
         });
 
         this.map.setLayers([
+            new TileLayer({
+            source: new OGCMapTile({
+                url: 'Maps/GetParallaxe/' + this.state.name,
+            }),
+        }),
             new ImageLayer({
                 source: new Static({
                     url: 'Maps/GetMap/' + this.state.name,
