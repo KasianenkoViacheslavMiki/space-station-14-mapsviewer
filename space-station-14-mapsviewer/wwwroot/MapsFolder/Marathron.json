@@ -1,0 +1,11 @@
+﻿{
+  "name": "Marathon",
+  "url": "https://rockethu.sirv.com/Images/Maps/Marathon.webp",
+  "extent": {
+    "x1": 0,
+    "y1": 0,
+    "x2": 5440,
+    "y2": 6368
+  }
+}
+

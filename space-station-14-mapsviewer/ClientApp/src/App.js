@@ -20,6 +20,8 @@ export default class App extends Component {
             zoom: 0,
             extent: [0, 0, 0, 0],
             name: 'Aspid',
+            url: '',
+            urlParallax:''
         };
     }
 
@@ -32,7 +34,19 @@ export default class App extends Component {
         fetch('Maps/GetJsonMap/Aspid')
             .then(res => res.json())
             .then((result) => {
-                this.setState({ extent: [0, 0, result.extent.y2*10, result.extent.x2*10] })
+                this.setState(
+                    {
+                        extent: [0, 0, result.extent.x2, result.extent.y2],
+                        url: result.url
+                    })
+            });
+        fetch('Maps/GetParallaxes/Aspid')
+            .then(res => res.json())
+            .then((result) => {
+                this.setState(
+                    {
+                        urlParallax: result.url
+                    })
             });
     }
 
@@ -49,25 +63,25 @@ export default class App extends Component {
         this.projectionl = new Projection({
             code: 'xkcd-image',
             units: 'pixels',
-            extent: [-50000, -50000,50000*100,50000*100]
+            extent: [-1024*1000, -1024*1000, 1024 * 1000, 1024 *1000]
         });
 
         
         this.map.setLayers([
             new TileLayer({
                 source: new XYZ({
-                    url: 'Maps/GetParallaxes/' + this.state.name,
+                    url: this.state.urlParallax,
                     projection: this.projectionl
                 }),
             }),
             new ImageLayer({
                 source: new Static({
-                    url: 'Maps/GetMap/' + this.state.name,
+                    url: this.state.url,
                     projection: this.projection,
                     imageExtent: this.state.extent,
                     interpolate: false,
                 }),
-            }),
+            })
         ]);
 
         this.map.setView(new View({

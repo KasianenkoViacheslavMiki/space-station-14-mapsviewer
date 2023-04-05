@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using space_station_14_mapsviewer.Strategy.ParallaxStrategy;
 using System.Drawing;
 using System.Net;
@@ -49,38 +50,21 @@ namespace space_station_14_mapsviewer.Controllers
         [HttpGet("GetJsonMap/{nameMap}")]
         public IActionResult GetJsonMap(string nameMap)
         {
-            if (!System.IO.File.Exists(currentPath + @"\wwwroot\MapsFolder\" + nameMap + ".png"))
-            {
-                return NotFound();
-            }
-            Bitmap img = new Bitmap(currentPath + @"\wwwroot\MapsFolder\" + nameMap + ".png");
-
-            
-            JsonMap jsonMap = new JsonMap();
-
-            jsonMap.Name = nameMap;
-            jsonMap.Extent = new Extent
-            {
-                X1 = 0,
-                Y1= 0,
-                X2 = (float)img.Height,
-                Y2 = (float)img.Width,
-            };
-
-            return Ok(jsonMap);
-        }
-        [HttpGet("GetMap/{nameMap}")]
-        public IActionResult GetMap(string nameMap)
-        {
-            if (!System.IO.File.Exists(currentPath + @"\wwwroot\MapsFolder\" + nameMap + ".png"))
+            if (!System.IO.File.Exists(currentPath + @"\wwwroot\MapsFolder\" + nameMap + ".json"))
             {
                 return NotFound();
             }
 
-            Byte[] map = System.IO.File.ReadAllBytes(currentPath+ @"\wwwroot\MapsFolder\" + nameMap+".png");     
+            JsonMap items = new JsonMap();
 
+            using (StreamReader r = new StreamReader(currentPath + @"\wwwroot\MapsFolder\" + nameMap + ".json"))
+            {
+                string json = r.ReadToEnd();
+                items = JsonConvert.DeserializeObject<JsonMap>(json);
+            }
 
-            return File(map, "image/png");
+            JsonMap result = items;
+            return Ok(result);
         }
 
         [HttpGet("GetParallaxes/{nameMap}")]
@@ -107,19 +91,29 @@ namespace space_station_14_mapsviewer.Controllers
                 return NotFound();
             }
 
-            Byte[] map = System.IO.File.ReadAllBytes(currentPath + @"\wwwroot\" + parallaxes.GetPath());
+            JsonMap items = new JsonMap();
 
-            return File(map, "image/png");
+            using (StreamReader r = new StreamReader(currentPath + @"\wwwroot\" + parallaxes.GetPath()))
+            {
+                string json = r.ReadToEnd();
+                items = JsonConvert.DeserializeObject<JsonMap>(json);
+            }
+
+            JsonMap result = items;
+            return Ok(result);
         }
     }
-
-    struct JsonMap
+    [Serializable]
+    class JsonMap
     {
         public string Name { get; set; }
 
+        public string Url { get; set; }
+
         public Extent Extent { get; set; }
     }
-    struct Extent
+    [Serializable]
+    class Extent
     {
         public float X1 { get; set; }
         public float Y1 { get; set; }
