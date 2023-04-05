@@ -29,7 +29,7 @@ export default class App extends Component {
             target: "map-container",
         });
 
-        fetch('https://localhost:44480/Maps/GetJsonMap/Aspid')
+        fetch('Maps/GetJsonMap/Aspid')
             .then(res => res.json())
             .then((result) => {
                 this.setState({ extent: [0, 0, result.extent.y2, result.extent.x2] })

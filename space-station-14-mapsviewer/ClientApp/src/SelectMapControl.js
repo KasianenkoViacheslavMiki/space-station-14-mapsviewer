@@ -5,7 +5,7 @@ export default class SelectMapControl extends Control {
         const comboBox = document.createElement('select');
 
         comboBox.addEventListener("change", function () {
-            fetch('https://localhost:44480/Maps/GetJsonMap/' + comboBox.value)
+            fetch('Maps/GetJsonMap/' + comboBox.value)
                 .then(res => res.json())
                 .then((result) => {
                     options.setState({ extent: [0, 0, result.extent.y2, result.extent.x2], name: result.name })
