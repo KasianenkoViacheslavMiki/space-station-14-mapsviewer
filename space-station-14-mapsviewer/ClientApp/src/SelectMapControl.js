@@ -1,15 +1,16 @@
 import { Control} from 'ol/control.js';
 
-export default class SelectMapControl extends Control {
+export default class SelectQualityControl extends Control {
     constructor(options) {
         const comboBox = document.createElement('select');
 
         comboBox.addEventListener("change", function () {
-            fetch('Maps/GetJsonMap/' + comboBox.value)
+            fetch('Maps/GetJsonMap/' + options.state.getUrl + '/' +  comboBox.value)
                 .then(res => res.json())
                 .then((result) => {
                     options.setState(
                         {
+                            name: comboBox.value,
                             extent: [0, 0, result.extent.x2, result.extent.y2],
                             url: result.url
                         })

@@ -18,6 +18,12 @@ code {
 }
 
 #map-selector {
+    top: 95px;
+    left: .5rem;
+    min-width: 120px
+}
+
+#quality-selector {
     top: 65px;
     left: .5rem;
     min-width: 120px

@@ -1,6 +1,7 @@
 ﻿{
   "name": "Barratry",
-  "url": "https://rockethu.sirv.com/Images/Maps/Barratry.webp",
+  "urlWebp": "https://rockethu.sirv.com/Images/Maps/Barratry.webp",
+  "urlPng": "https://iili.io/HkNKISf.png",
   "extent": {
     "x1": 0,
     "y1": 0,

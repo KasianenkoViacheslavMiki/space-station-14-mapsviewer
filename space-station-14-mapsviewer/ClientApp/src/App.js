@@ -7,6 +7,7 @@ import Static from 'ol/source/ImageStatic.js';
 import { getCenter } from 'ol/extent.js';
 import ImageLayer from 'ol/layer/Image.js';
 import SelectMapControl from './SelectMapControl.js';
+import SelectQualityControl from './SelectQualityControl.js';
 import {defaults as defaultControls } from 'ol/control.js';
 import TileLayer from 'ol/layer/Tile.js';
 import XYZ from 'ol/source/XYZ.js';
@@ -21,17 +22,18 @@ export default class App extends Component {
             extent: [0, 0, 0, 0],
             name: 'Aspid',
             url: '',
-            urlParallax:''
+            urlParallax: '',
+            getUrl: 'webp'
         };
     }
 
     componentDidMount() {
         this.map = new Map({
-            controls: defaultControls().extend([new SelectMapControl(this)]),
+            controls: defaultControls().extend([new SelectMapControl(this), new SelectQualityControl(this)]),
             target: "map-container",
         });
 
-        fetch('Maps/GetJsonMap/Aspid')
+        fetch('Maps/GetJsonMap/' + this.state.getUrl + '/' + this.state.name)
             .then(res => res.json())
             .then((result) => {
                 this.setState(
@@ -40,7 +42,7 @@ export default class App extends Component {
                         url: result.url
                     })
             });
-        fetch('Maps/GetParallaxes/Aspid')
+        fetch('Maps/GetParallaxes/' + this.state.name)
             .then(res => res.json())
             .then((result) => {
                 this.setState(
@@ -52,7 +54,10 @@ export default class App extends Component {
 
     componentDidUpdate() {
 
-        console.log('componentDidUpdate');
+        console.log('componentDidUpdate ' + this.state.url + ' ' + this.state.getUrl);
+
+
+
 
         this.projection = new Projection({
             code: 'xkcd-image',

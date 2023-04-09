@@ -1,6 +1,7 @@
 ﻿{
   "name": "Box",
-  "url": "https://rockethu.sirv.com/Images/Maps/Box.webp",
+  "urlWebp": "https://rockethu.sirv.com/Images/Maps/Box.webp",
+  "urlPng": "https://iili.io/HkNKxFs.png",
   "extent": {
     "x1": 0,
     "y1": 0,
