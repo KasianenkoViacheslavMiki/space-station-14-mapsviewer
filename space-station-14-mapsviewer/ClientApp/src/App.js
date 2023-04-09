@@ -11,7 +11,7 @@ import SelectQualityControl from './SelectQualityControl.js';
 import {defaults as defaultControls } from 'ol/control.js';
 import TileLayer from 'ol/layer/Tile.js';
 import XYZ from 'ol/source/XYZ.js';
-import TileImage from 'ol/source/TileImage.js';
+//import TileImage from 'ol/source/TileImage.js';
 
 export default class App extends Component {
     constructor(props) {
@@ -55,9 +55,7 @@ export default class App extends Component {
 
     componentDidUpdate() {
 
-        console.log('componentDidUpdate ' + this.state.url + ' ' + this.state.getUrl);
-
-
+        //console.log('componentDidUpdate ' + this.state.url + ' ' + this.state.getUrl);
 
 
         this.projection = new Projection({
