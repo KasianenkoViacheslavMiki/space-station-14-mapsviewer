@@ -26,18 +26,18 @@ export default class SelectQualityControl extends Control {
         });
 
 
-        var option = document.createElement("option");
+        var option_webp = document.createElement("option");
 
-        option.value = "webp";
-        option.text = "Low Quality";
+        option_webp.value = "webp";
+        option_webp.text = "Low Quality";
 
-        comboBox.appendChild(option);
+        comboBox.appendChild(option_webp);
 
-        var option = document.createElement("option");
+        var option_png = document.createElement("option");
 
-        option.value = "png";
-        option.text = "High Quality";
+        option_png.value = "png";
+        option_png.text = "High Quality";
 
-        comboBox.appendChild(option);
+        comboBox.appendChild(option_png);
     }
 }
