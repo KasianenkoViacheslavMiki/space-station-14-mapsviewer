@@ -1,6 +1,7 @@
 ﻿{
   "name": "Kettle",
-  "url": "https://rockethu.sirv.com/Images/Parallaxes/KettleParallaxBG.webp",
+  "urlWebp": "https://rockethu.sirv.com/Images/Parallaxes/AspidParallaxBG.webp",
+  "urlPng": "https://rockethu.sirv.com/Images/Parallaxes/AspidParallaxBG.webp",
   "extent": {
     "x1": 0,
     "y1": 0,

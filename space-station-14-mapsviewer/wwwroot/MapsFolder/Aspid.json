@@ -1,6 +1,7 @@
 ﻿{
   "name": "Aspid",
-  "url": "https://rockethu.sirv.com/Images/Maps/Aspid.webp",
+  "urlWebp": "https://rockethu.sirv.com/Images/Maps/Aspid.webp",
+  "urlPng": "https://iili.io/HkNKnPn.png",
   "extent": {
     "x1": 0,
     "y1": 0,

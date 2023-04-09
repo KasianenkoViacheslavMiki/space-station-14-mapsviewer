@@ -1,6 +1,7 @@
 ﻿{
   "name": "Bagel",
-  "url": "https://rockethu.sirv.com/Images/Maps/Bagel.webp",
+  "urlWebp": "https://rockethu.sirv.com/Images/Maps/Bagel.webp",
+  "urlPng": "https://iili.io/HkNKzcG.png",
   "extent": {
     "x1": 0,
     "y1": 0,

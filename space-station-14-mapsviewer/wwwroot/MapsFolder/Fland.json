@@ -1,6 +1,7 @@
 ﻿{
   "name": "Fland",
-  "url": "https://rockethu.sirv.com/Images/Maps/Fland.webp",
+  "urlWebp": "https://rockethu.sirv.com/Images/Maps/Fland.webp",
+  "urlPng": "https://iili.io/HkNKLfn.png",
   "extent": {
     "x1": 0,
     "y1": 0,

@@ -1,6 +1,7 @@
 ﻿{
   "name": "Meta",
-  "url": "https://rockethu.sirv.com/Images/Maps/Meta.webp",
+  "urlWebp": "https://rockethu.sirv.com/Images/Maps/Meta.webp",
+  "urlPng": "https://iili.io/HkNKiiX.png",
   "extent": {
     "x1": 0,
     "y1": 0,

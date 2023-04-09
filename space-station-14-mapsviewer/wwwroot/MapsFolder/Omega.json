@@ -1,6 +1,7 @@
 ﻿{
   "name": "Omega",
-  "url": "https://rockethu.sirv.com/Images/Maps/Omega.webp",
+  "urlWebp": "https://rockethu.sirv.com/Images/Maps/Omega.webp",
+  "urlPng": "https://iili.io/HkNKZUG.png",
   "extent": {
     "x1": 0,
     "y1": 0,

@@ -1,6 +1,7 @@
 ﻿{
   "name": "Marathon",
-  "url": "https://rockethu.sirv.com/Images/Maps/Marathon.webp",
+  "urlWebp": "https://rockethu.sirv.com/Images/Maps/Marathon.webp",
+  "urlPng": "https://iili.io/HkNK6xI.png",
   "extent": {
     "x1": 0,
     "y1": 0,

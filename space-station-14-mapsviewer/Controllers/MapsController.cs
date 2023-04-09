@@ -47,23 +47,37 @@ namespace space_station_14_mapsviewer.Controllers
             return Ok(nameMaps);
         }
 
-        [HttpGet("GetJsonMap/{nameMap}")]
-        public IActionResult GetJsonMap(string nameMap)
+        [HttpGet("GetJsonMap/{quality}/{nameMap}")]
+        public IActionResult GetJsonMap(string quality,string nameMap)
         {
             if (!System.IO.File.Exists(currentPath + @"\wwwroot\MapsFolder\" + nameMap + ".json"))
             {
                 return NotFound();
             }
 
-            JsonMap items = new JsonMap();
+            GetJsonMap items = new GetJsonMap();
 
             using (StreamReader r = new StreamReader(currentPath + @"\wwwroot\MapsFolder\" + nameMap + ".json"))
             {
                 string json = r.ReadToEnd();
-                items = JsonConvert.DeserializeObject<JsonMap>(json);
+                items = JsonConvert.DeserializeObject<GetJsonMap>(json);
             }
 
-            JsonMap result = items;
+            SendJsonMap result = new SendJsonMap();
+
+            result.Name = items.Name;
+
+            if (quality == "webp")
+            {
+                result.Url = items.urlWebp;
+            }
+            else if (quality == "png")
+            {
+                result.Url = items.urlPng;
+            }
+
+            result.Extent = items.Extent;
+
             return Ok(result);
         }
 
@@ -91,20 +105,34 @@ namespace space_station_14_mapsviewer.Controllers
                 return NotFound();
             }
 
-            JsonMap items = new JsonMap();
+            GetJsonMap items = new GetJsonMap();
 
             using (StreamReader r = new StreamReader(currentPath + @"\wwwroot\" + parallaxes.GetPath()))
             {
                 string json = r.ReadToEnd();
-                items = JsonConvert.DeserializeObject<JsonMap>(json);
+                items = JsonConvert.DeserializeObject<GetJsonMap>(json);
             }
 
-            JsonMap result = items;
+            SendJsonMap result = new SendJsonMap();
+            result.Name = items.Name;
+
+            result.Url = items.urlWebp;
+
+            result.Extent = items.Extent;
+
             return Ok(result);
         }
     }
     [Serializable]
-    class JsonMap
+    class GetJsonMap
+    {
+        public string Name { get; set; }
+        public string urlWebp { get; set; }
+        public string urlPng { get; set; }
+        public Extent Extent { get; set; }
+    }
+    [Serializable]
+    class SendJsonMap
     {
         public string Name { get; set; }
 

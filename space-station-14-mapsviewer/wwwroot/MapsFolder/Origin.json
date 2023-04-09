@@ -1,6 +1,7 @@
 ﻿{
   "name": "Origin",
-  "url": "https://rockethu.sirv.com/Images/Maps/Origin.webp",
+  "urlWebp": "https://rockethu.sirv.com/Images/Maps/Origin.webp",
+  "urlPng": "https://iili.io/HkNKbR4.png",
   "extent": {
     "x1": 0,
     "y1": 0,
