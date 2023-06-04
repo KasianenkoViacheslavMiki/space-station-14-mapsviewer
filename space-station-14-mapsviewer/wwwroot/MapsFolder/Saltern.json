@@ -1,12 +1,12 @@
-﻿{
-  "name": "Origin",
+{
+  "name": "Saltern",
   "urlWebp": "https://rockethu.sirv.com/Images/Maps/Origin.webp",
-  "urlPng": "https://iili.io/H4q2QqB.png",
+  "urlPng": "https://iili.io/H4q2ssV.png",
   "extent": {
     "x1": 0,
     "y1": 0,
-    "x2": 5568,
-    "y2": 5888
+    "x2": 4032,
+    "y2": 2496
   }
 }
 
